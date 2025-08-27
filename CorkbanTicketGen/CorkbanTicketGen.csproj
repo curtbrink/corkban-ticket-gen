@@ -11,10 +11,33 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8"/>
     </ItemGroup>
 
+    <Choose>
+        <When Condition="'$(CORKBAN_ENV)'=='production'">
+            <ItemGroup>
+                <PackageReference Include="Magick.NET-Q8-x64" Version="14.8.0"/>
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup>
+                <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.8.0"/>
+            </ItemGroup>
+        </Otherwise>
+    </Choose>
+
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\Dockerfile">
+            <Link>Dockerfile</Link>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\Jenkinsfile">
+            <Link>Jenkinsfile</Link>
+        </Content>
     </ItemGroup>
 
 </Project>
