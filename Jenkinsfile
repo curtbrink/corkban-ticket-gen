@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script {
                     // recreate container with new image
-                    sh "docker run -d -p 34201:8080 --mount type=bind,src=${env.CORKBAN_DATA_DIR},dst=/db --name ${env.REPO_NAME} ${env.DOCKER_IMAGE_NAME}"
+                    sh "docker run -d -p 34202:8080 --mount type=bind,src=${env.CORKBAN_DATA_DIR},dst=/db --name ${env.REPO_NAME} ${env.DOCKER_IMAGE_NAME}"
                 }
             }
         }
