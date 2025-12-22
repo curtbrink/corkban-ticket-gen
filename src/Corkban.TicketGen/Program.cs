@@ -1,5 +1,5 @@
-using CorkbanTicketGen.Auth;
-using CorkbanTicketGen.Configuration;
+using Corkban.TicketGen.Auth;
+using Corkban.TicketGen.Configuration;
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);

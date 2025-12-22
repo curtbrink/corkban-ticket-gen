@@ -1,4 +1,4 @@
-namespace CorkbanTicketGen.Configuration;
+namespace Corkban.TicketGen.Configuration;
 
 public class PrinterConfiguration
 {
