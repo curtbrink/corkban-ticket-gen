@@ -8,7 +8,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Corkban.TicketGen/Corkban.TicketGen.csproj", "Corkban.TicketGen/"]
 RUN dotnet restore "Corkban.TicketGen/Corkban.TicketGen.csproj"
-COPY . .
+COPY ./src .
 WORKDIR "/src/Corkban.TicketGen"
 RUN dotnet build "./Corkban.TicketGen.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
