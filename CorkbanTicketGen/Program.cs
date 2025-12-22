@@ -1,6 +1,10 @@
 using CorkbanTicketGen.Auth;
 using CorkbanTicketGen.Configuration;
+using CorkbanTicketGen.Entities;
+using CorkbanTicketGen.Infrastructure.Repositories;
+using CorkbanTicketGen.Infrastructure.Sqlite;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,10 @@ builder.Services.Configure<DataConfiguration>(builder.Configuration.GetSection(D
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddDbContext<SqliteContext>();
+
+builder.Services.AddScoped<IRepository<TemplateEntity>, TemplateRepository>();
 
 builder.Services.AddAuthentication(ApiKeyAuthenticationSchemeOptions.DefaultScheme)
     .AddScheme<ApiKeyAuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(
@@ -36,7 +44,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", [Authorize] () =>
+app.MapGet("/weatherforecast", [Authorize] async ([FromServices] IRepository<TemplateEntity> templateRepo) =>
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
@@ -46,7 +54,10 @@ app.MapGet("/weatherforecast", [Authorize] () =>
                     summaries[Random.Shared.Next(summaries.Length)]
                 ))
             .ToArray();
-        return forecast;
+
+        var foo = await templateRepo.GetAllAsync();
+
+        return foo;
     })
     .WithName("GetWeatherForecast");
 
