@@ -1,9 +1,9 @@
-using CorkbanTicketGen.Configuration;
-using CorkbanTicketGen.Entities;
+using Corkban.TicketGen.Configuration;
+using Corkban.TicketGen.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace CorkbanTicketGen.Infrastructure.Sqlite;
+namespace Corkban.TicketGen.Infrastructure.Sqlite;
 
 public sealed class SqliteContext(IOptions<DataConfiguration> dataConfig) : DbContext
 {

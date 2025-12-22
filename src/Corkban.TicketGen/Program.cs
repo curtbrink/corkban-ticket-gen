@@ -1,10 +1,9 @@
-using CorkbanTicketGen.Auth;
-using CorkbanTicketGen.Configuration;
-using CorkbanTicketGen.Entities;
-using CorkbanTicketGen.Infrastructure.Repositories;
-using CorkbanTicketGen.Infrastructure.Sqlite;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using Corkban.TicketGen;
+using Corkban.TicketGen.Entities;
+using Corkban.TicketGen.Infrastructure.Repositories;
+using Corkban.TicketGen.Infrastructure.Sqlite;
+using Corkban.TicketGen.Auth;
+using Corkban.TicketGen.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,7 +43,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", [Authorize] async ([FromServices] IRepository<TemplateEntity> templateRepo) =>
+app.MapGet("/weatherforecast", [Microsoft.AspNetCore.Authorization.Authorize] async ([Microsoft.AspNetCore.Mvc.FromServices] IRepository<TemplateEntity> templateRepo) =>
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
@@ -63,7 +62,10 @@ app.MapGet("/weatherforecast", [Authorize] async ([FromServices] IRepository<Tem
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+namespace Corkban.TicketGen
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
 }

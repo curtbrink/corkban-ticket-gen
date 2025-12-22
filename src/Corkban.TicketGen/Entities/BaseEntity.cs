@@ -1,4 +1,4 @@
-namespace CorkbanTicketGen.Entities;
+namespace Corkban.TicketGen.Entities;
 
 public class BaseEntity
 {

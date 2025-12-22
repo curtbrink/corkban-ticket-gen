@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 
-namespace CorkbanTicketGen.Auth;
+namespace Corkban.TicketGen.Auth;
 
 public class ApiKeyAuthenticationSchemeOptions : AuthenticationSchemeOptions
 {

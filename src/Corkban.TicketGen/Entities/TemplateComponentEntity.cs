@@ -1,6 +1,6 @@
-using CorkbanTicketGen.Enums;
+using Corkban.TicketGen.Enums;
 
-namespace CorkbanTicketGen.Entities;
+namespace Corkban.TicketGen.Entities;
 
 public class TemplateComponentEntity : BaseEntity
 {

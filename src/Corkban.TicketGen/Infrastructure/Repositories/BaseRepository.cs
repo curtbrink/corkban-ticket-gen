@@ -1,8 +1,8 @@
-using CorkbanTicketGen.Entities;
-using CorkbanTicketGen.Infrastructure.Sqlite;
+using Corkban.TicketGen.Entities;
+using Corkban.TicketGen.Infrastructure.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace CorkbanTicketGen.Infrastructure.Repositories;
+namespace Corkban.TicketGen.Infrastructure.Repositories;
 
 public interface IRepository<T> where T : BaseEntity
 {

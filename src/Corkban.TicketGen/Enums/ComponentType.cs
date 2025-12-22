@@ -1,4 +1,4 @@
-namespace CorkbanTicketGen.Enums;
+namespace Corkban.TicketGen.Enums;
 
 public enum ComponentType
 {
