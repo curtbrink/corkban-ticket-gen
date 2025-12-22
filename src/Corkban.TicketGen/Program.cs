@@ -1,5 +1,6 @@
-using CorkbanTicketGen.Auth;
-using CorkbanTicketGen.Configuration;
+using Corkban.TicketGen;
+using Corkban.TicketGen.Auth;
+using Corkban.TicketGen.Configuration;
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,7 +53,10 @@ app.MapGet("/weatherforecast", [Authorize] () =>
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+namespace Corkban.TicketGen
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
 }
